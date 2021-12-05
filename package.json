@@ -1,0 +1,26 @@
+{
+  "name": "mysqlmodel",
+  "version": "1.0.0",
+  "description": "MySQL Model",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "#"
+  },
+  "keywords": [
+    "MySQL",
+    "Model",
+    "MySQL"
+  ],
+  "author": "Titus Sutio Fanpula",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "mysql2": "^2.2.5"
+  }
+}
