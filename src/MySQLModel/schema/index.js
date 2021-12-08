@@ -24,18 +24,35 @@ class MySQLSchema {
       },
       schema
     );
+
     schema.createdAt = {
       type: "BIGINT",
       length: 13,
       default: Date.now(),
       name: "created_at",
     };
+
     schema.updatedAt = {
       type: "BIGINT",
       length: 13,
       default: Date.now(),
       name: "updated_at",
     };
+
+    schema.createdBy = {
+      type: "VARCHAR",
+      length: 36,
+      ref: "Users",
+      name: "created_by",
+    };
+
+    schema.updatedBy = {
+      type: "VARCHAR",
+      length: 36,
+      ref: "Users",
+      name: "updated_by",
+    };
+
     schema.isDelete = {
       type: "TINYINT",
       length: 1,
@@ -44,6 +61,17 @@ class MySQLSchema {
     };
 
     this.schema = schema;
+  }
+
+  get column() {
+    return Object.keys(this.schema)
+      .map((key) => {
+        if (this.schema[key].name) {
+          return `${this.schema[key].name} AS ${key}`;
+        }
+        return key;
+      })
+      .toString();
   }
 }
 

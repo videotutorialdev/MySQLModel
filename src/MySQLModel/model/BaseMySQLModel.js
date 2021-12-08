@@ -11,7 +11,7 @@ class BaseMySQLModel {
 
   static async find() {
     const result = await this.connection.query(
-      `SELECT * FROM ${this.tableName}`
+      `SELECT ${this.schema.column} FROM ${this.tableName}`
     );
     return result[0];
   }

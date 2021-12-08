@@ -12,10 +12,9 @@ const { createConnection, mySQLModel } = require("./MySQLModel");
     };
     await createConnection(connectionOptions);
 
-    console.log(CategoryModel.schema);
-    console.log(UserModel.schema);
+    console.log(CategoryModel.schema.column);
 
-    // require("./routes/category");
+    require("./routes/category");
   } catch (ex) {
     console.log(ex.message);
   }
