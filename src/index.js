@@ -10,22 +10,11 @@ const { createConnection, mySQLModel } = require("./MySQLModel");
     };
     await createConnection(connectionOptions);
 
-    const CategoryModel = mySQLModel.model("Category", {}, "tb_categories");
-    const category = new CategoryModel();
+    // register model
+    mySQLModel.model("Category", {}, "tb_categories");
+    mySQLModel.model("Users", {});
 
-    console.log(await category.find());
-    // const categoryList = await CategoryModel.find();
-
-    // console.log(categoryList);
-
-    const UserModel = mySQLModel.model("Users", {});
-    const userList = await UserModel.find();
-
-    console.log("User =>");
-    console.log(userList);
-
-    console.log("Category Map");
-    console.log(mySQLModel.get("Category"));
+    require("./routes/category");
   } catch (ex) {
     console.log(ex.message);
   }

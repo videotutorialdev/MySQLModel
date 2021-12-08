@@ -3,7 +3,7 @@ const { BaseMySQLModel } = require("./model/BaseMySQLModel");
 const { mySQLModel } = require("./model/mySqlModel");
 
 const getModel = (modelName) => {
-  BaseMySQLModel.modelMap.get(modelName);
+  return BaseMySQLModel.modelMap.get(modelName);
 };
 
 module.exports = {

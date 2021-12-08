@@ -3,6 +3,9 @@ const mySQLModel = (modelName, schema, tableName) => {
   class MySQLModel extends BaseMySQLModel {
     constructor(payload) {
       super(payload);
+      this.modelName = modelName;
+      this.schema = schema;
+      this.tableName = tableName;
     }
 
     save(payload) {
