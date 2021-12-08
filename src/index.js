@@ -1,3 +1,5 @@
+const { CategoryModel } = require("./model/CategoryModel");
+const { UserModel } = require("./model/UserModel");
 const { createConnection, mySQLModel } = require("./MySQLModel");
 (async () => {
   try {
@@ -10,11 +12,10 @@ const { createConnection, mySQLModel } = require("./MySQLModel");
     };
     await createConnection(connectionOptions);
 
-    // register model
-    mySQLModel.model("Category", {}, "tb_categories");
-    mySQLModel.model("Users", {});
+    console.log(CategoryModel.schema);
+    console.log(UserModel.schema);
 
-    require("./routes/category");
+    // require("./routes/category");
   } catch (ex) {
     console.log(ex.message);
   }
