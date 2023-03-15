@@ -17,11 +17,26 @@ class BaseMySQLModel {
   }
 
   static async save(payload) {
-    payload.created_at = Date.now();
-    payload.updated_at = Date.now();
+    const queryObject = {};
+
+    const { schema } = this.schema;
+
+    Object.keys(schema).forEach((key) => {
+      const name = schema[key].name || key;
+      if (payload[key]) {
+        queryObject[name] = payload[key];
+      } else {
+        if (schema[key].primary) return;
+        const defaultValue = schema[key].default;
+        queryObject[name] =
+          typeof defaultValue === "undefined" ? null : defaultValue;
+      }
+    });
+
     const query = `INSERT INTO ${this.tableName} (${Object.keys(
-      payload
-    )}) VALUES (${Object.values(payload).map((val) => `'${val}'`)})`;
+      queryObject
+    )}) VALUES (${Object.values(queryObject).map((val) => `'${val}'`)})`;
+
     const result = await this.connection.query(query);
     payload.id = result[0].insertId;
     return payload;

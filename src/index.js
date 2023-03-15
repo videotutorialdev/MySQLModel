@@ -12,7 +12,16 @@ const { createConnection, mySQLModel } = require("./MySQLModel");
     };
     await createConnection(connectionOptions);
 
-    console.log(CategoryModel.schema.column);
+    // const result = await UserModel.save({
+    //   username: "janesmith",
+    //   email: "janesmith@gmail.com",
+    //   firstName: "Jane",
+    //   lastName: "Smith",
+    // });
+
+    // console.log("");
+    // console.log(await result);
+    // console.log("");
 
     require("./routes/category");
   } catch (ex) {
