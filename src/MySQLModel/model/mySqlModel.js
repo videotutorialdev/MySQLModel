@@ -19,6 +19,10 @@ const mySQLModel = (modelName, schema, tableName) => {
     findOneById(id) {
       return MySQLModel.findOneById(id);
     }
+
+    findByIdAndUpdate(id, payload) {
+      return MySQLModel.findByIdAndUpdate(id, payload);
+    }
   }
 
   BaseMySQLModel.modelMap.set(modelName, new MySQLModel());

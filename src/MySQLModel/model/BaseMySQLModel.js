@@ -50,11 +50,25 @@ class BaseMySQLModel {
   }
 
   static async findByIdAndUpdate(id, payload) {
-    payload.updated_at = Date.now();
-    const query = `UPDATE ${this.tableName} SET ${Object.keys(payload).map(
-      (key) => `${key}='${payload[key]}'`
+    const queryObject = {
+      updated_at: Date.now(),
+    };
+
+    const { schema } = this.schema;
+
+    Object.keys(schema).forEach((key) => {
+      const name = schema[key].name || key;
+      if (payload[key]) {
+        queryObject[name] = payload[key];
+      }
+    });
+
+    const query = `UPDATE ${this.tableName} SET ${Object.keys(queryObject).map(
+      (key) => `${key}='${queryObject[key]}'`
     )} WHERE id = ${id}`;
+
     await this.connection.query(query);
+
     return this.findOneById(id);
   }
 

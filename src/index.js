@@ -12,11 +12,8 @@ const { createConnection, mySQLModel } = require("./MySQLModel");
     };
     await createConnection(connectionOptions);
 
-    // const result = await UserModel.save({
-    //   username: "janesmith",
-    //   email: "janesmith@gmail.com",
-    //   firstName: "Jane",
-    //   lastName: "Smith",
+    // const result = await UserModel.findByIdAndUpdate(5, {
+    //   username: "johnsmith",
     // });
 
     // console.log("");
