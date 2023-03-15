@@ -29,7 +29,7 @@ class BaseMySQLModel {
 
   static async findOneById(id) {
     const [result] = await this.connection.query(
-      `SELECT * FROM ${this.tableName} WHERE id = ${id}`
+      `SELECT ${this.schema.column} FROM ${this.tableName} WHERE id = ${id}`
     );
     return result[0];
   }

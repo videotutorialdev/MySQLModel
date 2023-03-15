@@ -17,9 +17,9 @@ class MySQLSchema {
     schema = Object.assign(
       {
         id: {
-          type: "VARCHAR",
+          type: "INT",
           primary: true,
-          length: 36,
+          length: 11,
         },
       },
       schema
